@@ -28,3 +28,21 @@ imputer = Imputer(missing_values = 'NaN', strategy = 'mean', axis = 0) #Object
 imputer = imputer.fit(X[:, 1:3]) # Use instance in 2nd and 3rd cols
 X[:, 1:3] = imputer.transform(X[:, 1:3]) # Replace missing data with mean
 
+# Country and Purchased Cols are categorical variables
+# Need to encode text of these variables in to numbers
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+# Create first object of this class
+labelencoder_X = LabelEncoder() # Creates object
+# Use object on col
+X[:, 0] = labelencoder_X.fit_transform(X [:, 0]) # fits object to first column and returns it encoded
+# Prevent equations from thinking there is relational order to countries, so create dummy variables
+onehotencoder = OneHotEncoder(categorical_features = [0]) #Call Class
+# Note, categorical_feautres = 0 applies to 1st col index
+
+# Fit to the matrix
+X = onehotencoder.fit_transform(X).toarray()
+
+# Encode last col for purchased, this is dependent variable so it's known that it's not relational order, only label enoder needed
+labelencoder_y = LabelEncoder() # Creates object
+# Use object on col
+y = labelencoder_y.fit_transform(y)
