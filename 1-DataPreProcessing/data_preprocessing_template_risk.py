@@ -46,3 +46,9 @@ X = onehotencoder.fit_transform(X).toarray()
 labelencoder_y = LabelEncoder() # Creates object
 # Use object on col
 y = labelencoder_y.fit_transform(y)
+
+# Splitting the dataset into the Training set and Test set
+# Test set performance should not differ too much from training sets if our model will adapt well
+from sklearn.cross_validation import train_test_split
+# Build training and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
