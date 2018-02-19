@@ -24,3 +24,16 @@ dataset$Purchased = factor(dataset$Purchased,
                          levels = c('No','Yes'),
                          labels = c(0, 1)) # f1 for help
 # Note, labels No Yes as 0 1
+
+# Splitting the dataset into the Training set and Test set
+# install.packages('caTools')
+# install commented out after it's executed once
+
+# Call library
+library(caTools)
+set.seed(123) # choose any number
+split = sample.split(dataset$Purchased, SplitRatio = 0.8)
+# Returns true if observations goes to training set
+
+training_set = subset(dataset, split == TRUE)
+test_set = subset(dataset, split == FALSE)
