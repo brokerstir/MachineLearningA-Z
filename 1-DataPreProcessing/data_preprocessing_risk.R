@@ -37,3 +37,7 @@ split = sample.split(dataset$Purchased, SplitRatio = 0.8)
 
 training_set = subset(dataset, split == TRUE)
 test_set = subset(dataset, split == FALSE)
+
+# Feature Scaling allows machine learning models to converge quickly
+training_set[, 2:3] = scale(training_set[, 2:3])
+test_set[, 2:3] = scale(test_set[, 2:3]) # [, 2:3] selecting columns to apply scaling
