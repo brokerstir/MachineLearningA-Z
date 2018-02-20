@@ -2,28 +2,8 @@
 
 # Importing the dataset
 dataset = read.csv('Data.csv')
+# dataset = dataset[, 2:3]
 
-# No need to create matrices or independent and dependent vars
-
-# Take care of missing data
-dataset$Age = ifelse(is.na(dataset$Age),
-                     ave(dataset$Age, FUN = function(x) mean(x, na.rm = TRUE)),
-                     dataset$Age) # Replaces missing age values with mean
-
-dataset$Salary = ifelse(is.na(dataset$Salary),
-                     ave(dataset$Salary, FUN = function(x) mean(x, na.rm = TRUE)),
-                     dataset$Salary) # Replaces missing salary values with mean
-
-# Dummy variables for R is easy and done with vectors
-dataset$Country = factor(dataset$Country,
-                         levels = c('France', 'Spain', 'Germany'),
-                         labels = c(1, 2, 3)) # f1 for help
-# Note, labels country as 1, 2, 3  and changes dataset file
-
-dataset$Purchased = factor(dataset$Purchased,
-                         levels = c('No','Yes'),
-                         labels = c(0, 1)) # f1 for help
-# Note, labels No Yes as 0 1
 
 # Splitting the dataset into the Training set and Test set
 # install.packages('caTools')
@@ -39,5 +19,5 @@ training_set = subset(dataset, split == TRUE)
 test_set = subset(dataset, split == FALSE)
 
 # Feature Scaling allows machine learning models to converge quickly
-training_set[, 2:3] = scale(training_set[, 2:3])
-test_set[, 2:3] = scale(test_set[, 2:3]) # [, 2:3] selecting columns to apply scaling
+# training_set[, 2:3] = scale(training_set[, 2:3])
+# test_set[, 2:3] = scale(test_set[, 2:3]) # [, 2:3] selecting columns to apply scaling
