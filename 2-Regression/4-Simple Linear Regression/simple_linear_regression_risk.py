@@ -27,4 +27,7 @@ from sklearn.linear_model import LinearRegression
 regressor = LinearRegression() # No params needed
 regressor.fit(X_train, y_train) # Fits regressor object to the training sets, regressor is machine that learns on training set, can use this to make predictions on test set
 
-
+# Predicting the Test set results
+# Put predictions in vector
+y_pred = regressor.predict(X_test)
+# compare y_test (actual salaries) with y_pred
