@@ -31,3 +31,20 @@ regressor.fit(X_train, y_train) # Fits regressor object to the training sets, re
 # Put predictions in vector
 y_pred = regressor.predict(X_test)
 # compare y_test (actual salaries) with y_pred
+
+
+# Visualising the Training set results
+plt.scatter(X_train, y_train, color = 'red') # Actual data (observation points) of training set
+plt.plot(X_train, regressor.predict(X_train), color = 'blue') # Plot of predicted values on training set
+plt.title('Salary vs Experience (Training set)')
+plt.xlabel('Years of Experience')
+plt.ylabel('Salary')
+plt.show()
+
+# Visualising the Test set results (against same unique regression line built on training set)
+plt.scatter(X_test, y_test, color = 'red')
+plt.plot(X_train, regressor.predict(X_train), color = 'blue')
+plt.title('Salary vs Experience (Test set)')
+plt.xlabel('Years of Experience')
+plt.ylabel('Salary')
+plt.show()
