@@ -15,3 +15,11 @@ test_set = subset(dataset, split == FALSE)
 # training_set = scale(training_set)
 # test_set = scale(test_set)
 
+# data preprocessing complete
+
+# Fitting Simple Linear Regression to the Training set
+regressor = lm(formula = Salary ~ YearsExperience, 
+               data = training_set)
+
+# Type summary(regressor) in console and notice *** for strength of dependence
+# Low P value indicates independent variable is highly significant
