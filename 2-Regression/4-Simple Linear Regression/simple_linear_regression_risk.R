@@ -23,3 +23,7 @@ regressor = lm(formula = Salary ~ YearsExperience,
 
 # Type summary(regressor) in console and notice *** for strength of dependence
 # Low P value indicates independent variable is highly significant
+
+# Predicting the Test set Results
+y_pred = predict(regressor, newdata = test_set)
+# After execution, type y_pred in console to see values
