@@ -42,3 +42,18 @@ y_pred = regressor.predict(X_test)
 import statsmodels.formula.api as sm
 # Create column of 1s to associate with constant B zero
 X =  np.append(arr = np.ones((50,1)).astype(int), values = X, axis =1)
+# Create matrix only with independent vars that have hight impact
+# Start with matrix of features of all ind vars
+X_opt = X[:, [0, 1, 2, 3, 4, 5]]
+# Create new regressor object
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+# Look for predictor with highest p value
+regressor_OLS.summary()
+
+# See in console that X2 has p value highest
+# Remove X2
+X_opt = X[:, [0, 1, 3, 4, 5]]
+# Create new regressor object
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+# Look for predictor with highest p value
+regressor_OLS.summary()
