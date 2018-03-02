@@ -71,3 +71,10 @@ X_opt = X[:, [0, 3, 5]]
 regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
 # Look for predictor with highest p value
 regressor_OLS.summary()
+
+
+X_opt = X[:, [0, 3]]
+# Create new regressor object
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+# Look for predictor with highest p value
+regressor_OLS.summary()
