@@ -18,3 +18,27 @@ test_set = subset(dataset, split == FALSE)
 
 # Manual feature scaling not required
 
+# Feature Scaling
+# training_set = scale(training_set)
+# test_set = scale(test_set)
+
+# Fitting Multiple Linear Regression to the Training set
+
+# regressor = lm(formula = Profit ~ R.D.Spend + Administration + Marketing.Spend + State)
+# Short Version
+regressor = lm(formula = Profit ~ .,
+               data = training_set)
+
+
+# Profit is linear combination of ind vars
+# Type sumarry(regressor) in console
+# Notice dummy vars were implemented automatically
+
+# Lower p value means higher sinigicance of ind vars.
+
+# In this example, the only strong predictor is RD spend
+# So convert this to simple linear
+# regressor = lm(formula = Profit ~ R.D.Spend, data = training_set)
+
+
+
