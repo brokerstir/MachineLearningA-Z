@@ -43,7 +43,21 @@ regressor = lm(formula = Profit ~ .,
 # Predicting the Test set results
 y_pred = predict(regressor, newdata = test_set)
 
-# Type y_pred in console to look at it
+# Type y_pred in console to look at it, and compare tith test_set
+
+# Building the optimal model using bacdward elmination
+# Use regressor model but type out all ind vars
+regressor = lm(formula = Profit ~ R.D.Spend + Administration + Marketing.Spend + State,
+               data = dataset) # on whole data set for complete info
+# Beauty of R is no need to create dummy vars, the factor function does this when encoding categorical data
+
+summary(regressor) # Returns data to search for vars with P value above signif level
+
+# Complete backwared elimination, remove vars with high P values, first to remove is State
+regressor = lm(formula = Profit ~ R.D.Spend + Administration + Marketing.Spend,
+               data = dataset) 
+summary(regressor)
+
 
 
 
