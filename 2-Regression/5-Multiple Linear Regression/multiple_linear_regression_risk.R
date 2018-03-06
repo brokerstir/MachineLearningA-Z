@@ -40,5 +40,10 @@ regressor = lm(formula = Profit ~ .,
 # So convert this to simple linear
 # regressor = lm(formula = Profit ~ R.D.Spend, data = training_set)
 
+# Predicting the Test set results
+y_pred = predict(regressor, newdata = test_set)
+
+# Type y_pred in console to look at it
+
 
 
