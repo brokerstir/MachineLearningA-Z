@@ -58,6 +58,16 @@ regressor = lm(formula = Profit ~ R.D.Spend + Administration + Marketing.Spend,
                data = dataset) 
 summary(regressor)
 
+# Next, remove Administration
+regressor = lm(formula = Profit ~ R.D.Spend + Marketing.Spend,
+               data = dataset) 
+summary(regressor)
+
+# Next, remove Marketing.Spend
+regressor = lm(formula = Profit ~ R.D.Spend,
+               data = dataset) 
+summary(regressor)
+
 
 
 
