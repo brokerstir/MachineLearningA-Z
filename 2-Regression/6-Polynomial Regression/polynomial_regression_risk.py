@@ -25,3 +25,26 @@ X_test = sc_X.transform(X_test)"""
 
 # End data preprocessing
 
+# Fit Linear and Polynomial Regressions and compare them
+
+# Fitting Linear Regression to the dataset
+# First create class
+from sklearn.linear_model import LinearRegression
+# Then create object of class
+lin_reg = LinearRegression()
+lin_reg.fit(X, y)
+
+# Fitting Polynomial Regression to the dataset
+# First create class
+from sklearn.preprocessing import PolynomialFeatures
+# Then create object of class
+# Var poly_reg will transform X matrix by adding exponentials of X as ind vars
+poly_reg = PolynomialFeatures(degree = 4)
+X_poly = poly_reg.fit_transform(X)
+poly_reg.fit(X_poly, y)
+# Transformation of new matrix of features complete
+
+# Create new object
+lin_reg_2 = LinearRegression()
+lin_reg_2.fit(X_poly, y)
+
