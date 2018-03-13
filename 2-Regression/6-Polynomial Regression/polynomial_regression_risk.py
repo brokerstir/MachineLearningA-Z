@@ -76,3 +76,10 @@ plt.xlabel('Position level')
 plt.ylabel('Salary')
 plt.show()
 
+# Predicting a new result with Linear Regression
+# This prediction will not be accurate because it's based on linear prediction
+lin_reg.predict(6.5)
+
+# Predicting a new result with Polynomial Regression
+lin_reg_2.predict(poly_reg.fit_transform(6.5))
+
