@@ -18,3 +18,16 @@ dataset = dataset[2:3] # Keep only last two cols
 # training_set = scale(training_set)
 # test_set = scale(test_set)
 
+# Build a linear model to compare with polynomial model
+
+# Fitting Linear Regression to the dataset
+lin_reg = lm(formula = Salary ~ .,
+             data = dataset)
+
+# Fitting Polynomial Regression to the dataset
+dataset$Level2 = dataset$Level^2 # Adds a col of ind var squared
+dataset$Level3 = dataset$Level^3
+# dataset$Level4 = dataset$Level^4
+poly_reg = lm(formula = Salary ~ .,
+              data = dataset) # Type summary(poly_reg) in console to see results
+
