@@ -22,38 +22,37 @@ regressor = lm(formula = Grade ~ MinutesStudy, # f1 calls help for lm function
 # Type summary(regressor) in console and notice *** for strength of dependence
 # Low P value indicates independent variable is highly significant
 
-
-
-
-
+# STEP 3
 
 # Predicting the Test set Results
-y_pred = predict(regressor, newdata = test_set)
+Y
 # After execution, type y_pred in console to see values
+
+# STEP 4
 
 # Visualising the Training set results
 # install.packages('ggplot2') // Commented out aftr install
 
 # Call library
-library(ggplot2)
+# library(ggplot2)
 
-# Plot observation points, regression line, label axis. Points plotted with real observation data, but line with y predicted values
+# Use functions to plot observation points, regression line, label axis. Points plotted with real observation data, but line with y predicted values
 ggplot() +
-  geom_point(aes(x = training_set$YearsExperience, y = training_set$Salary),
+  geom_point(aes(x = training_set$MinutesStudy, y = training_set$Grade),
              colour = 'red') +
-  geom_line(aes(x = training_set$YearsExperience, y = predict(regressor, newdata = training_set)),
+  geom_line(aes(x = training_set$MinutesStudy, y = predict(regressor, newdata = training_set)),
             colour = 'blue') +
-  ggtitle('Salary vs Experience (Training set)') +
-  xlab('Years of experience') +
-  ylab('Salary')
+  ggtitle('Grade vs Minutes Studied (Training set)') +
+  xlab('Minutes Studied') +
+  ylab('Grade')
 
 
 # Visualising the Test set results. Keep regression line oon training set, because it's a already trained on training set, using test set would obtain same line with new points.
 ggplot() +
-  geom_point(aes(x = test_set$YearsExperience, y = test_set$Salary),
+  geom_point(aes(x = test_set$MinutesStudy, y = test_set$Grade),
              colour = 'red') +
-  geom_line(aes(x = training_set$YearsExperience, y = predict(regressor, newdata = training_set)),
+  geom_line(aes(x = training_set$MinutesStudy, y = predict(regressor, newdata = training_set)),
             colour = 'blue') +
-  ggtitle('Salary vs Experience (Test set)') +
-  xlab('Years of experience') +
-  ylab('Salary')
+  ggtitle('Grade vs Minutes Studied (Test set)') +
+  xlab('Minutes Studied') +
+  ylab('Grade')
