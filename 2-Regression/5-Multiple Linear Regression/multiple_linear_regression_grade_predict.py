@@ -21,7 +21,7 @@ X[:, 2] = labelencoder_X.fit_transform(X[:, 2]) # Select state col
 onehotencoder = OneHotEncoder(categorical_features = [2])
 X = onehotencoder.fit_transform(X).toarray()
 # Dependent variables don't need to be encoded
-# 4th col of state is replaced with three cols at beginning with each col corresponding to each state
+
 
 # Avoiding the Dummy Var Trap
 # Library will take care of trap but added here as reminder
@@ -33,13 +33,25 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, rando
 
 # Manual feature scaling not needed
 
+# STEP 2
+
 # Fitting Multiple Linear Regression to the Training set
 from sklearn.linear_model import LinearRegression
 regressor = LinearRegression()
 regressor.fit(X_train, y_train)
 
+# STEP 3
+
 # Predicting the Test set results
 y_pred = regressor.predict(X_test)
+
+######################################################
+
+# Backward Elimination
+# STEP 1
+
+# The goal is to find a team of independent variables that have the most statistical significance. 
+
 
 # Building the optimal model using Backward Elimination
 import statsmodels.formula.api as sm
