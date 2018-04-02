@@ -25,7 +25,7 @@ regressor = lm(formula = Grade ~ MinutesStudy, # f1 calls help for lm function
 # STEP 3
 
 # Predicting the Test set Results
-Y
+y_pred = predict(regressor, newdata = test_set)
 # After execution, type y_pred in console to see values
 
 # STEP 4
