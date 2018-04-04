@@ -62,36 +62,29 @@ X =  np.append(arr = np.ones((50,1)).astype(int), values = X, axis =1)
 
 # Create matrix only with independent vars that have hight impact
 # Start with matrix of features of all ind vars
-X_opt = X[:, [0, 1, 2, 3, 4, 5]]
+X_opt = X[:, [0, 1, 2, 3]]
+
+# 1. Select p value to test ind vars against significance level "SL", to determine if they will stay in model or not. So, SL = 0.05 = 5%
+
+# 2. Fit the model with all possible predictors
 # Create new regressor object
 regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
-# Look for predictor with highest p value
+
+# 3. Look for predictor with highest p value, test if it's above SL
 regressor_OLS.summary()
 
-# See in console that X2 has p value highest
-# Remove X2
-X_opt = X[:, [0, 1, 3, 4, 5]]
-# Create new regressor object
-regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
-# Look for predictor with highest p value
-regressor_OLS.summary()
-
-
-X_opt = X[:, [0, 3, 4, 5]]
-# Create new regressor object
-regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
-# Look for predictor with highest p value
-regressor_OLS.summary()
-
-
-X_opt = X[:, [0, 3, 5]]
+# See in console that X3 has p value highest
+# Remove X3
+X_opt = X[:, [0, 1, 2]]
 # Create new regressor object
 regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
 # Look for predictor with highest p value
 regressor_OLS.summary()
 
 
-X_opt = X[:, [0, 3]]
+# See in console that X1 has p value highest
+# Remove X1
+X_opt = X[:, [0, 2]]
 # Create new regressor object
 regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
 # Look for predictor with highest p value
