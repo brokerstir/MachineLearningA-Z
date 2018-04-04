@@ -53,10 +53,13 @@ y_pred = regressor.predict(X_test)
 # The goal is to find a team of independent variables that have the most statistical significance. 
 
 
+
 # Building the optimal model using Backward Elimination
 import statsmodels.formula.api as sm
-# Create column of 1s to associate with constant B zero
+
+# Create column of 1s to associate with constant B zero, so the coloumn of 1s can be thought of as X zero equal to 1
 X =  np.append(arr = np.ones((50,1)).astype(int), values = X, axis =1)
+
 # Create matrix only with independent vars that have hight impact
 # Start with matrix of features of all ind vars
 X_opt = X[:, [0, 1, 2, 3, 4, 5]]
