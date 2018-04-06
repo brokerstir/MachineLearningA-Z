@@ -24,32 +24,34 @@ test_set = subset(gradesdataset, split == FALSE)
 # training_set = scale(training_set)
 # test_set = scale(test_set)
 
-
-
-
+# STEP 2
 
 # Fitting Multiple Linear Regression to the Training set
 
-# regressor = lm(formula = Profit ~ R.D.Spend + Administration + Marketing.Spend + State)
+# regressor = lm(formula = Grade ~ MinutesStudy + HoursSleep + Subject)
 # Short Version
-regressor = lm(formula = Profit ~ .,
+regressor = lm(formula = Grade ~ .,
                data = training_set)
 
-
-# Profit is linear combination of ind vars
+# Grade is linear combination of ind vars
 # Type sumarry(regressor) in console
 # Notice dummy vars were implemented automatically
 
 # Lower p value means higher sinigicance of ind vars.
 
-# In this example, the only strong predictor is RD spend
+# In this example, the only strong predictor is Minutes Study
 # So convert this to simple linear
-# regressor = lm(formula = Profit ~ R.D.Spend, data = training_set)
+# regressor = lm(formula = Grade ~ MinutesStudy, data = training_set)
+
+# STEP 3
 
 # Predicting the Test set results
 y_pred = predict(regressor, newdata = test_set)
 
 # Type y_pred in console to look at it, and compare tith test_set
+
+
+
 
 # Building the optimal model using bacdward elmination
 # Use regressor model but type out all ind vars
