@@ -25,8 +25,8 @@ X_test = sc.transform(X_test)
 # STEP 2
 
 # Fitting Logistic Regression to the Training set
-from sklearn.linear_model import LogisticRegression
-classifier = LogisticRegression(random_state = 0)
+from sklearn.linear_model import LogisticRegression # Import Class
+classifier = LogisticRegression(random_state = 0) # Creates object of Class with using only one parameter
 classifier.fit(X_train, y_train)
 
 # Predicting the Test set results
