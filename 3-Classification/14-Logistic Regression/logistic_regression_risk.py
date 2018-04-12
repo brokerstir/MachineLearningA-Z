@@ -29,12 +29,20 @@ from sklearn.linear_model import LogisticRegression # Import Class
 classifier = LogisticRegression(random_state = 0) # Creates object of Class with using only one parameter
 classifier.fit(X_train, y_train)
 
+# STEP 3
+
 # Predicting the Test set results
+# Create a vector of predictions with the test set
 y_pred = classifier.predict(X_test)
 
+# STEP 4
+
 # Making the Confusion Matrix
-from sklearn.metrics import confusion_matrix
+# Function that makes matrix of correct and incorrect predictions
+from sklearn.metrics import confusion_matrix # Functions start with lower case
 cm = confusion_matrix(y_test, y_pred)
+
+
 
 # Visualising the Training set results
 from matplotlib.colors import ListedColormap
