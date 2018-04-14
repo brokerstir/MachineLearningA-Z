@@ -23,12 +23,13 @@ test_set = subset(dataset, split == FALSE)
 training_set[, 1:2] = scale(training_set[, 1:2])
 test_set[, 1:2] = scale(test_set[, 1:2])
 
-
+# STEP 2
 
 # Fitting Logistic Regression to the Training set
 classifier = glm(formula = Purchased ~ .,
                  family = binomial,
                  data = training_set)
+# STEP 3
 
 # Predicting the Test set results
 prob_pred = predict(classifier, type = 'response', newdata = test_set[-3])
