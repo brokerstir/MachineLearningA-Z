@@ -35,6 +35,8 @@ classifier = glm(formula = Purchased ~ .,
 prob_pred = predict(classifier, type = 'response', newdata = test_set[-3])
 y_pred = ifelse(prob_pred > 0.5, 1, 0)
 
+# STEP 4
+
 # Making the Confusion Matrix
 cm = table(test_set[, 3], y_pred > 0.5)
 
