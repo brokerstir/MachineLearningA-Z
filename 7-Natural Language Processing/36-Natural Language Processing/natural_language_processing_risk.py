@@ -10,6 +10,15 @@ import pandas as pd
 # Importing the dataset
 dataset = pd.read_csv('Restaurant_Reviews.tsv', delimiter = '\t', quoting = 3) # Tab is set as delimiter and double quotes will be ignored
 
+# STEP 2
+
+# Cleaning the texts
+import re
+review = re.sub('[^a-zA-Z]', ' ', dataset['Review'][0]) # Removes everything but letters, replaces with a space, applied to first review for testing
+
+
+
+
 # Cleaning the texts
 import re
 import nltk
