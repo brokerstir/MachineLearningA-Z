@@ -17,16 +17,22 @@ import re
 import nltk
 nltk.download('stopwords') # This is a list of stop word that we want to remove from the reviews
 from nltk.corpus import stopwords
+from nltk.stem.porter import PorterStemmer
 review = re.sub('[^a-zA-Z]', ' ', dataset['Review'][0]) # Removes everything but letters, replaces with a space, applied to first review for testing
 
-# STEP 3 & 4
+# STEP 3 & 4 & 5
 
 # Make all letters lower case
 review = review.lower()
 # Split review into list of words
 review = review.split()
+# Create object of stemmer class
+ps = PorterStemmer()
 # Loop through words in review and keep words if not in stopwords
-review = [word for word in review if not word in set(stopwords.words('english'))]
+# review = [word for word in review if not word in set(stopwords.words('english'))]
+# Use stemmer object
+review = [ps.stem(word) for word in review if not word in set(stopwords.words('english'))]
+
 
 
 
