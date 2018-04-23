@@ -32,7 +32,8 @@ ps = PorterStemmer()
 # review = [word for word in review if not word in set(stopwords.words('english'))]
 # Use stemmer object
 review = [ps.stem(word) for word in review if not word in set(stopwords.words('english'))]
-
+# Join words back form list to string
+review = ' '.join(review)
 
 
 
