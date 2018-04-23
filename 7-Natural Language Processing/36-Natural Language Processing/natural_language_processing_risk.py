@@ -14,8 +14,19 @@ dataset = pd.read_csv('Restaurant_Reviews.tsv', delimiter = '\t', quoting = 3) #
 
 # Cleaning the texts
 import re
+import nltk
+nltk.download('stopwords') # This is a list of stop word that we want to remove from the reviews
+from nltk.corpus import stopwords
 review = re.sub('[^a-zA-Z]', ' ', dataset['Review'][0]) # Removes everything but letters, replaces with a space, applied to first review for testing
 
+# STEP 3 & 4
+
+# Make all letters lower case
+review = review.lower()
+# Split review into list of words
+review = review.split()
+# Loop through words in review and keep words if not in stopwords
+review = [word for word in review if not word in set(stopwords.words('english'))]
 
 
 
