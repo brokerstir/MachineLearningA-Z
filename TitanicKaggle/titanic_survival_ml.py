@@ -1,0 +1,86 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Apr 23 11:54:30 2018
+
+@author: Broker Stir
+
+For the Titanic Kaggle 
+"""
+
+# Data Preprocessing
+
+# Importing the libraries
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Importing the dataset
+train_dataset = pd.read_csv('train_mod2.csv')
+
+X = train_dataset.iloc[:, 2:6].values
+y = train_dataset.iloc[:, 1].values
+
+# Taking care of missing data
+# Use mean age to sub for nan values
+from sklearn.preprocessing import Imputer
+imputer = Imputer(missing_values = 'NaN', strategy = 'mean', axis = 0)
+imputer = imputer.fit(X[:, 2:3])
+X[:, 2:3] = imputer.transform(X[:, 2:3])
+
+# Encoding categorical data for gender
+# Encoding the Independent Variable
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+labelencoder_X = LabelEncoder() # Creates object
+X[:, 1] = labelencoder_X.fit_transform(X[:, 1]) # Transform gender to categories
+onehotencoder = OneHotEncoder(categorical_features = [1])
+X = onehotencoder.fit_transform(X).toarray() # Encodes as categorical variables
+
+
+# Encoding categorical data for pClass
+# Encoding the Independent Variable
+labelencoder2_X = LabelEncoder() # Creates object
+X[:, 2] = labelencoder2_X.fit_transform(X[:, 2]) # Transform Pclass to categories
+# Transform Pclass as categorical
+onehotencoder2 = OneHotEncoder(categorical_features = [2])
+X = onehotencoder2.fit_transform(X).toarray() # Encodes as categorical variables
+
+# NOTE:
+# Columns 0-2 are dummy vars for Pclass
+# Columns 3-4 or dummy vars for Gender
+
+# Encoding the Dependent Variable
+labelencoder_y = LabelEncoder()
+y = labelencoder_y.fit_transform(y)
+
+###########
+
+# Splitting the dataset into the Training set and Test set
+from sklearn.cross_validation import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 0)
+
+# Feature Scaling
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+X_train = sc.fit_transform(X_train)
+X_test = sc.transform(X_test)
+
+# STEP 2
+
+# Fitting Logistic Regression to the Training set
+from sklearn.linear_model import LogisticRegression # Import Class
+classifier = LogisticRegression(random_state = 0) # Creates object of Class with using only one parameter
+classifier.fit(X_train, y_train)
+
+# STEP 3
+
+# Predicting the Test set results
+# Create a vector of predictions with the test set
+y_pred = classifier.predict(X_test)
+
+# STEP 4
+
+# Making the Confusion Matrix
+# Function that makes matrix of correct and incorrect predictions
+from sklearn.metrics import confusion_matrix # Functions start with lower case
+cm = confusion_matrix(y_test, y_pred)
+
