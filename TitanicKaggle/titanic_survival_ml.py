@@ -35,28 +35,32 @@ X[:, 1] = labelencoder_X.fit_transform(X[:, 1]) # Transform gender to categories
 onehotencoder = OneHotEncoder(categorical_features = [1])
 X = onehotencoder.fit_transform(X).toarray() # Encodes as categorical variables
 
+# Avoid dummy var trap
+X = X[:, 1:]
+
+# NOTE: col 0 -> dummy var gender, col 1 -> PClass, col 2 -> Age, col 3 -> Fare
+ 
 
 # Encoding categorical data for pClass
 # Encoding the Independent Variable
 labelencoder2_X = LabelEncoder() # Creates object
-X[:, 2] = labelencoder2_X.fit_transform(X[:, 2]) # Transform Pclass to categories
+X[:, 1] = labelencoder2_X.fit_transform(X[:, 1]) # Transform Pclass to categories
 # Transform Pclass as categorical
-onehotencoder2 = OneHotEncoder(categorical_features = [2])
+onehotencoder2 = OneHotEncoder(categorical_features = [1])
 X = onehotencoder2.fit_transform(X).toarray() # Encodes as categorical variables
 
-# NOTE:
-# Columns 0-2 are dummy vars for Pclass
-# Columns 3-4 or dummy vars for Gender
+# Avoid dummy var trap
+X = X[:, 1:]
+
+# NOTE: col 0, 1  -> PClass dummy vars, col 2 -> dummy var gender, col 3 -> Age, col 4 -> Fare
 
 # Encoding the Dependent Variable
 labelencoder_y = LabelEncoder()
 y = labelencoder_y.fit_transform(y)
 
-###########
-
 # Splitting the dataset into the Training set and Test set
 from sklearn.cross_validation import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 0)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.30, random_state = 0)
 
 # Feature Scaling
 from sklearn.preprocessing import StandardScaler
