@@ -68,23 +68,46 @@ sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
 
-# STEP 2
+# Build Logistic Regression Model
 
 # Fitting Logistic Regression to the Training set
 from sklearn.linear_model import LogisticRegression # Import Class
 classifier = LogisticRegression(random_state = 0) # Creates object of Class with using only one parameter
 classifier.fit(X_train, y_train)
 
-# STEP 3
-
 # Predicting the Test set results
 # Create a vector of predictions with the test set
 y_pred = classifier.predict(X_test)
-
-# STEP 4
 
 # Making the Confusion Matrix
 # Function that makes matrix of correct and incorrect predictions
 from sklearn.metrics import confusion_matrix # Functions start with lower case
 cm = confusion_matrix(y_test, y_pred)
+
+# Build K-Nearest Neighbor Model
+
+# Fitting K-NN to the Training set
+# Import object, create object and fit object
+from sklearn.neighbors import KNeighborsClassifier
+classifier_knn = KNeighborsClassifier(n_neighbors = 5, metric = 'minkowski', p = 2) # Number of neighbors base on euclidean distance
+classifier_knn.fit(X_train, y_train)
+
+# Predicting the Test set results
+y_pred_knn = classifier_knn.predict(X_test)
+
+# Making the Confusion Matrix
+from sklearn.metrics import confusion_matrix
+cm_knn = confusion_matrix(y_test, y_pred_knn)
+
+# Fitting Decision Tree Classification to the Training set
+from sklearn.tree import DecisionTreeClassifier
+classifier_dt = DecisionTreeClassifier(criterion = 'entropy', random_state = 0)
+classifier_dt.fit(X_train, y_train)
+
+# Predicting the Test set results
+y_pred_dt = classifier_dt.predict(X_test)
+
+# Making the Confusion Matrix
+from sklearn.metrics import confusion_matrix
+cm_dt = confusion_matrix(y_test, y_pred_dt)
 
