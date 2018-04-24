@@ -12,7 +12,8 @@ dataset = pd.read_csv('Restaurant_Reviews.tsv', delimiter = '\t', quoting = 3) #
 
 # STEP 2
 
-# Cleaning the texts
+'''
+# Cleaning the texts by individual line
 import re
 import nltk
 nltk.download('stopwords') # This is a list of stop word that we want to remove from the reviews
@@ -34,10 +35,10 @@ ps = PorterStemmer()
 review = [ps.stem(word) for word in review if not word in set(stopwords.words('english'))]
 # Join words back form list to string
 review = ' '.join(review)
+'''
 
 
-
-# Cleaning the texts
+# Cleaning the texts usinga for loop
 import re
 import nltk
 nltk.download('stopwords')
