@@ -57,14 +57,17 @@ for i in range(0, 1000):
 # Creating the Bag of Words model
 # Bag of words model creates a column for each word and a row for each review. A cell gets a 1 or 0 depending if the word appears in the review. Most cells will be 0. This is called sparsity or a sparse matrix.s
 from sklearn.feature_extraction.text import CountVectorizer
-cv = CountVectorizer(max_features = 1500)
+cv = CountVectorizer(max_features = 1500) # Max features parameters filters out less frequent words, and limits number of word columns
 X = cv.fit_transform(corpus).toarray() # Creates sparse matrix of features
-y = dataset.iloc[:, 1].values
+y = dataset.iloc[:, 1].values # Creates vector for dependent var
 
 # Splitting the dataset into the Training set and Test set
 from sklearn.cross_validation import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20, random_state = 0)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20, random_state = 0) # Chose 20% for test size to have more data for training...since data set was larage
 
+# NOTE: Feature scaling is not needed since our matrix is almost all 1 and 0
+
+# Naive Bayes, Decision Tree, and Random Forest are common models used for NLP. In this example we will use Naive Bayes
 # Fitting Naive Bayes to the Training set
 from sklearn.naive_bayes import GaussianNB
 classifier = GaussianNB()
@@ -76,3 +79,4 @@ y_pred = classifier.predict(X_test)
 # Making the Confusion Matrix
 from sklearn.metrics import confusion_matrix
 cm = confusion_matrix(y_test, y_pred)
+accuracy = (55+91)/200 # .73 accuracy is fair considering the training size of 800. A bigger training size could improve accuracy
