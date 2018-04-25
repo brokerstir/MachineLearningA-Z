@@ -55,9 +55,10 @@ for i in range(0, 1000):
     corpus.append(review)
 
 # Creating the Bag of Words model
+# Bag of words model creates a column for each word and a row for each review. A cell gets a 1 or 0 depending if the word appears in the review. Most cells will be 0. This is called sparsity or a sparse matrix.s
 from sklearn.feature_extraction.text import CountVectorizer
 cv = CountVectorizer(max_features = 1500)
-X = cv.fit_transform(corpus).toarray()
+X = cv.fit_transform(corpus).toarray() # Creates sparse matrix of features
 y = dataset.iloc[:, 1].values
 
 # Splitting the dataset into the Training set and Test set
