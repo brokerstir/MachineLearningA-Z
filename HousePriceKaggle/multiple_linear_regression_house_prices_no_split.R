@@ -6,21 +6,21 @@ testdataset = read.csv('test_mod2.csv')
 
 # Encoding categorical data
 
-traindataset$BsmtFinType1 = factor(traindataset$BsmtFinType1,
-                              levels = c('ALQ', 'BLQ', 'GLQ', 'LwQ', 'NA', 'Rec', 'Unf'),
+'''traindataset$BsmtFinType1 = factor(traindataset$BsmtFinType1,
+                              levels = c('ALQ', 'BLQ', 'GLQ', 'LwQ', 'NBsmt', 'Rec', 'Unf'),
                               labels = c(1, 2, 3, 4, 5, 6, 7))
 
 testdataset$BsmtFinType1 = factor(testdataset$BsmtFinType1,
-                                   levels = c('ALQ', 'BLQ', 'GLQ', 'LwQ', 'NA', 'Rec', 'Unf'),
-                                   labels = c(1, 2, 3, 4, 5, 6, 7))
+                                   levels = c('ALQ', 'BLQ', 'GLQ', 'LwQ', 'NBsmt', 'Rec', 'Unf'),
+                                   labels = c(1, 2, 3, 4, 5, 6, 7))'''
 
 
 traindataset$BsmtQual = factor(traindataset$BsmtQual,
-                          levels = c('Ex', 'Fa', 'Gd', 'NA', 'Po', 'TA'),
+                          levels = c('Ex', 'Fa', 'Gd', 'NBsmt', 'Po', 'TA'),
                           labels = c(1, 2, 3, 4, 5, 6))
 
 testdataset$BsmtQual = factor(testdataset$BsmtQual,
-                               levels = c('Ex', 'Fa', 'Gd', 'NA', 'Po', 'TA'),
+                               levels = c('Ex', 'Fa', 'Gd', 'NBsmt', 'Po', 'TA'),
                                labels = c(1, 2, 3, 4, 5, 6))
 
 
@@ -60,12 +60,12 @@ testdataset$HouseStyle = factor(testdataset$HouseStyle,
 
 
 traindataset$Neighborhood = factor(traindataset$Neighborhood,
-                       levels = c('Blmngtn', 'Blueste', 'BrDale', 'BrkSide', 'ClearCr', 'CollgCr', 'Crawfor', 'Edwards', 'Gilbert', 'IDOTRR', 'MeadowV', 'Mitchel', 'NPkVill', 'NWAmes', 'NAmes', 'NoRidge', 'NridgHt', 'OldTown', 'SWISU', 'Sawyer', 'SawyerW', 'Somerst', 'StoneBr', 'Timber', 'Veenker'),
-                       labels = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25))
+                       levels = c('Blmngtn', 'Blueste', 'BrDale', 'BrkSide', 'ClearCr', 'CollgCr', 'Crawfor', 'Edwards', 'Gilbert', 'IDOTRR', 'MeadowV', 'Mitchel', 'NPkVill', 'NWAmes', 'NAmes', 'NoRidge', 'NridgHt', 'OldTown', 'SWISU', 'Sawyer', 'SawyerW', 'Somerst', 'StoneBr', 'Timber', 'Veenker', 'NBsmtmes'),
+                       labels = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26))
 
 testdataset$Neighborhood = factor(testdataset$Neighborhood,
-                                   levels = c('Blmngtn', 'Blueste', 'BrDale', 'BrkSide', 'ClearCr', 'CollgCr', 'Crawfor', 'Edwards', 'Gilbert', 'IDOTRR', 'MeadowV', 'Mitchel', 'NPkVill', 'NWAmes', 'NAmes', 'NoRidge', 'NridgHt', 'OldTown', 'SWISU', 'Sawyer', 'SawyerW', 'Somerst', 'StoneBr', 'Timber', 'Veenker'),
-                                   labels = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25))
+                                   levels = c('Blmngtn', 'Blueste', 'BrDale', 'BrkSide', 'ClearCr', 'CollgCr', 'Crawfor', 'Edwards', 'Gilbert', 'IDOTRR', 'MeadowV', 'Mitchel', 'NPkVill', 'NWAmes', 'NAmes', 'NoRidge', 'NridgHt', 'OldTown', 'SWISU', 'Sawyer', 'SawyerW', 'Somerst', 'StoneBr', 'Timber', 'Veenker', 'NBsmtmes'),
+                                   labels = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26))
 
 
 
@@ -107,7 +107,7 @@ test_set = subset(dataset, split == FALSE)'''
 
 
 # Complete backwared elimination, remove vars with high P values
-regressor = lm(formula = SalePrice ~ OverallQual + OverallCond + GrLivArea + FullBath + HalfBath + GarageArea + LotArea + HouseStyle + LotConfig + Neighborhood + ExterQual + BsmtQual + BsmtFinType1,
+regressor = lm(formula = SalePrice ~ OverallQual + OverallCond + GrLivArea + FullBath + HalfBath + GarageArea + LotArea + HouseStyle + LotConfig + Neighborhood + ExterQual + BsmtQual,
                data = traindataset) 
 
 summary(regressor)
