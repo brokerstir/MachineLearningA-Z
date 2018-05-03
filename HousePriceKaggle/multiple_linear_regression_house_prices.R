@@ -5,6 +5,24 @@ dataset = read.csv('train_mod2.csv')
 
 # Encoding categorical data
 
+dataset$BsmtFinType1 = factor(dataset$BsmtFinType1,
+                          levels = c('ALQ', 'BLQ', 'GLQ', 'LwQ', 'NA', 'Rec', 'Unf'),
+                          labels = c(1, 2, 3, 4, 5, 6, 7))
+
+
+dataset$BsmtQual = factor(dataset$BsmtQual,
+                            levels = c('Ex', 'Fa', 'Gd', 'NA', 'Po', 'TA'),
+                            labels = c(1, 2, 3, 4, 5, 6))
+
+dataset$Foundation = factor(dataset$Foundation,
+                           levels = c('BrkTil', 'CBlock', 'PConc', 'Slab', 'Stone', 'Wood'),
+                           labels = c(1, 2, 3, 4, 5, 6))
+
+dataset$ExterQual = factor(dataset$ExterQual,
+                           levels = c('Ex', 'Fa', 'Gd', 'Po', 'TA'),
+                           labels = c(1, 2, 3, 4, 5))
+
+
 dataset$LotConfig = factor(dataset$LotConfig,
                           levels = c('Corner', 'CulDSac', 'FR2', 'FR3', 'Inside'),
                           labels = c(1, 2, 3, 4, 5))
@@ -49,7 +67,7 @@ dataset$Neighborhood = factor(dataset$Neighborhood,
 # Splitting the dataset into the Training set and Test set
 # install.packages('caTools')
 library(caTools)
-set.seed(123)
+set.seed(101)
 split = sample.split(dataset$SalePrice, SplitRatio = 0.9)
 training_set = subset(dataset, split == TRUE)
 test_set = subset(dataset, split == FALSE)
@@ -69,8 +87,8 @@ test_set = subset(dataset, split == FALSE)
 
 
 # Complete backwared elimination, remove vars with high P values
-regressor = lm(formula = SalePrice ~ OverallQual + OverallCond + GrLivArea + FullBath + HalfBath + GarageArea + LotArea + HouseStyle + LotConfig + Neighborhood,
-               data = dataset) 
+regressor = lm(formula = SalePrice ~ OverallQual + OverallCond + GrLivArea + FullBath + HalfBath + GarageArea + LotArea + HouseStyle + LotConfig + Neighborhood + ExterQual + Foundation + BsmtQual + BsmtFinType1,
+               data = training_set) 
 
 summary(regressor)
 
