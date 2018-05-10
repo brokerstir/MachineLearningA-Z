@@ -17,7 +17,11 @@ itemFrequencyPlot(dataset, topN = 10) # Frequency plot of top 10 products, Use t
 # support above product bought 3 times per day that's 21 per week / 7500 weekl transactions rounds to  .003 .... note, this is arbitrary, can be changed
 # start with a default confidence and decrease step by step until there are good associations, high confidence will give us obvious rules where too small will give silly rules / 0.8 is default for now. But 0.8 returned no rules, so to high, nothing matches 80% of time, try 0.4
 # Training Apriori on the dataset
-rules = apriori(data = dataset, parameter = list(support = 0.003, confidence = 0.4))
+rules = apriori(data = dataset, parameter = list(support = 0.004, confidence = 0.2))
 
 # Visualising the results
-inspect(sort(rules, by = 'lift')[1:10])
+inspect(sort(rules, by = 'lift')[1:10]) #gives first ten rules sorted by life, or relevance
+
+# Chocolat and herb pepper is not a good association, but in the rules because it has hight support, so we should change confidence, we don't want to change support in this case, so lower confidence to 0.2
+
+# Now, perhaps change the support to products bought 4 times a day
