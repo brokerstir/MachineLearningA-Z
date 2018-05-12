@@ -16,7 +16,9 @@ for i in range(0, 7501): # loop through all the transactions
 # apyori script serves as the package
 # Training Apriori on the dataset
 from apyori import apriori
-rules = apriori(transactions, min_support = 0.003, min_confidence = 0.2, min_lift = 3, min_length = 2)
+rules = apriori(transactions, min_support = 0.003, min_confidence = 0.2, min_lift = 3, min_length = 2) # keyword arguments depend on problem and data
+# support started at 3 * 7 / 7500 whics is 3 times a day times 7 days a week divided by total transactions in a week.
+# High confidence can lead to obvious results, so play with the number, it can be arbitrary
 
 # Visualising the results
 results = list(rules)
